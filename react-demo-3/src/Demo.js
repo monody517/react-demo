@@ -4,7 +4,8 @@ class Demo extends React.PureComponent{
     constructor(props){
         super(props)
         this.state = {
-            x:0
+            x:0,
+            width:undefined
         }
     }
     onClick = () => {
@@ -18,12 +19,18 @@ class Demo extends React.PureComponent{
     //         return true
     //     }
     // }
+    componentDidMount(){
+        const x = document.querySelector('#x')
+        const {width} = x.getBoundingClientRect()
+        this.setState({width})
+    }
     render(){
         console.log('render了一次');
         return (
-            <div>
+            <div id='x'>
                 {this.state.x}
                 <button onClick={this.onClick}>+1</button>
+                {this.state.width}
             </div>
         )
     }
